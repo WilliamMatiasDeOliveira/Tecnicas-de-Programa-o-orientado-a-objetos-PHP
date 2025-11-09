@@ -1,0 +1,32 @@
+<?php
+
+abstract class Pessoa
+{
+
+    public function __construct(
+        protected string $nome = "",
+        protected string $celular = ""
+    ) {}
+
+    // getters
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    public function getCelular()
+    {
+        return $this->celular;
+    }
+
+    // setters
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    public function setCelular($celular)
+    {
+        $this->celular = $celular;
+    }
+}
