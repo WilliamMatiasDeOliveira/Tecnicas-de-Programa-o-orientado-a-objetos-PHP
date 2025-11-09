@@ -1,32 +1,28 @@
 <?php
 
-abstract class Pessoa
-{
+abstract class Pessoa{
 
     public function __construct(
         protected string $nome = "",
-        protected string $celular = ""
-    ) {}
+        private array $telefones = array()
+    )
+    {}
 
     // getters
-    public function getNome()
-    {
+    public function getNome(){
         return $this->nome;
     }
 
-    public function getCelular()
-    {
-        return $this->celular;
+    public function getTelefones(){
+        return $this->telefones;
     }
 
     // setters
-    public function setNome($nome)
-    {
+    public function setNome(string $nome){
         $this->nome = $nome;
     }
 
-    public function setCelular($celular)
-    {
-        $this->celular = $celular;
+    public function setTelefone(int $ddd, string $numero){
+        $this->telefones[] = new Telefone($ddd, $numero);
     }
 }

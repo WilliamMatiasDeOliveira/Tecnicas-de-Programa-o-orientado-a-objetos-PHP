@@ -1,33 +1,37 @@
 <?php
+
 require_once "Pessoa.php";
 require_once "Cliente.php";
-require_once "Prestador.php";
-require_once "Agenda.php";
-require_once "Itens.php";
-require_once "Servico.php";
+require_once "Contratado.php";
+require_once "Telefone.php";
+require_once "Festa.php";
+require_once "Decoracao.php";
 
+$contratado = new Contratado("WMO eventos", "222.222.222.-22", null);
+$contratado->setTelefone(15, "99854-8796");
+$contratado->setTelefone(16, "4625-8725");
+$cliente = new Cliente("william matias", "336.652.968-70");
+$cliente->setTelefone(14, "99654-6814");
+$cliente->setTelefone(11, "3652-8547");
+$decoracao = new Decoracao("Decoração infantil tema Battiman");
 
+$festa = new Festa("20/12/2025", "25/12/2025", 2540, $contratado, $cliente, $decoracao);
 
-$cliente = new Cliente("pricila", "(14)99747-4189", "222.222.222-70");
-$prestador = new Prestador("Joaquin", "(15)3372-3776", "pintura");
-$servico = new Servico("Pintura interna da residencia", 2542);
-$agenda1 = new Agenda("16:20", "ativo", $cliente, $prestador, null, $servico, "15/10/2025");
+echo "<h1>Festa</h1>";
 
-echo "<h1>Agenda</h1>";
-
-echo "<strong>Cliente: </strong>{$agenda1->getCliente()->getNome()}<br>";
-echo "<strong>Telefone: </strong>{$agenda1->getCliente()->getCelular()}<br>";
-echo "<strong>CPF: </strong>{$agenda1->getCliente()->getCpf()}<br><br>";
-
-echo "<strong>Descrição do Serviço</strong><br>";
-echo "<strong>Servico: </strong>{$agenda1->getServico()->getDescritivo()}<br>";
-echo "<strong>Preço: </strong>" . number_format($agenda1->getServico()->getPreco(), 2, ".", ",") . "<br>";
-echo "<strong>Prestador: </strong>{$agenda1->getPrestador()->getNome()}<br>";
-echo "<strong>Prestador: </strong>{$agenda1->getPrestador()->getNome()}<br>";
-echo "<strong>Celular: </strong>{$agenda1->getPrestador()->getCelular()}<br>";
-echo "<strong>Especialidade: </strong>{$agenda1->getPrestador()->getEspecialidade()}<br>";
-
-
-
-
-
+echo "<strong>Cliente:</strong> " . $festa->getCliente()->getNome() . "<br>";
+echo "<strong>CPF:</strong> " . $festa->getCliente()->getCpf() . "<br>";
+foreach($festa->getCliente()->getTelefones() as $telefone){
+    echo "<strong>Telefone:</strong> ({$telefone->getDdd()}) {$telefone->getNumero()}<br>";
+}
+echo "<br>";
+echo "<strong>Empresa Contratada:</strong> " . $festa->getContratado()->getNome() . "<br>";
+echo "<strong>Empresa Cnpj:</strong> " . $festa->getContratado()->getCnpj() . "<br>";
+foreach($festa->getContratado()->getTelefones() as $telefone){
+    echo "<strong>Telefone:</strong> " . "({$telefone->getDdd()}) {$telefone->getNumero()} <br>";
+}
+echo "<br>";
+echo "<strong>Data do Contrato:</strong> " . $festa->getDataContrato() . "<br>";
+echo "<strong>Data da Festa:</strong> " . $festa->getDataFesta() . "<br>";
+echo "<strong>Valor:</strong> " . $festa->getValor() . "<br><br>";
+echo "<strong>Decoração:</strong> " . $festa->getDecoracao()->getDescritivo() . "<br>";
