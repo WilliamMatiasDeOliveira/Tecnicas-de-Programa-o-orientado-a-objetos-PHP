@@ -49,15 +49,15 @@ class Festa{
         $this->valor = $valor;
     }
 
-    public function setContratado($contratado){
+    public function setContratado(Contratado $contratado){
         $this->contratado = $contratado;
     }
 
-    public function setCliente($cliente){
+    public function setCliente(Cliente $cliente){
         $this->cliente = $cliente;
     }
 
-    public function setDecoracao($decoracao){
+    public function setDecoracao(Decoracao $decoracao){
         $this->decoracao = $decoracao;
     }
 }
